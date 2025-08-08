@@ -1,6 +1,19 @@
 plugins {
     id("java")
+    id ("io.qameta.allure") version ("2.11.2")
 }
+
+allure {
+    version = "2.20.0"
+    adapter {
+        frameworks {
+            junit5 {
+                adapterVersion = "2.20.0"
+            }
+        }
+    }
+}
+
 
 group = "org.example"
 version = "1.0-SNAPSHOT"
@@ -29,6 +42,11 @@ dependencies {
     implementation ("ch.qos.logback:logback-classic:1.4.4")
 }
 
+
 tasks.test {
     useJUnitPlatform()
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
